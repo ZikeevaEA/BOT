@@ -1,7 +1,7 @@
 
 function workshop(msg, user, bot)
 {
-	//подключаем нужные модули
+	//РїРѕРґРєР»СЋС‡Р°РµРј РЅСѓР¶РЅС‹Рµ РјРѕРґСѓР»Рё
 	var fs = require('fs');
 	var jf = require('jsonfile');
 	var my_funcs = require('./My_funcs.js');
@@ -13,24 +13,24 @@ function workshop(msg, user, bot)
 	
        User.state = 'shop_menu';
    
-       if (txt === '/КУПИТЬ ОРУЖИЕ') {
+       if (txt === '/ГЉГ“ГЏГ€Г’Гњ ГЋГђГ“Г†Г€Г…') {
 					
 		User.state = 'buy_weapon';
-		bot.sendMessage(chatId, 'Введите уровень оружия, которое желаете приобрести');
+		bot.sendMessage(chatId, 'Р’РІРµРґРёС‚Рµ СѓСЂРѕРІРµРЅСЊ РѕСЂСѓР¶РёСЏ, РєРѕС‚РѕСЂРѕРµ Р¶РµР»Р°РµС‚Рµ РїСЂРёРѕР±СЂРµСЃС‚Рё');
 		bot.on(n, function (msg) { 
 			if (typeof n == 'integer') {
 				for (var i = 0; i < weapons.length; i++) {
-					Var s = "id: " weapons[i].id + "\nУрон: " + weapons[i].damage + "\nПодзарядка: "  + weapons[i].cooldawn  + "\nНеобходимый уровень: " + weapons[i].needLevel + "lvl"  + "\nЦена: " + weapons[i].price ;
+					Var s = "id: " weapons[i].id + "\nРЈСЂРѕРЅ: " + weapons[i].damage + "\nРџРѕРґР·Р°СЂСЏРґРєР°: "  + weapons[i].cooldawn  + "\nРќРµРѕР±С…РѕРґРёРјС‹Р№ СѓСЂРѕРІРµРЅСЊ: " + weapons[i].needLevel + "lvl"  + "\nР¦РµРЅР°: " + weapons[i].price ;
 					if (n == weapons[i].needLevel) {
 						bot.sendMessage(chatID, s);
 						User.state = 'buy';
 					}
-
-					else { bot.sendMessage(chatID, "Оружия введённого уровня нет"); }
-					bot.sendMessage(chatID, "Чтобы купить оружие введите команду /'%id оружия'");
+					else { bot.sendMessage(chatID, "РЈСЂСѓР¶РёСЏ РІРІРµРґС‘РЅРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ РЅРµС‚"); }
 				}
+				bot.sendMessage(chatID, "Р§С‚РѕР±С‹ РєСѓРїРёС‚СЊ РѕСЂСѓР¶РёРµ, РІРІРµРґРёС‚Рµ /'%id РѕСЂСѓР¶РёСЏ'");
+			}
 			else 
-				{bot.sendMessage(chatID, "Необходимо ввести число");}
+				{bot.sendMessage(chatID, "РќРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё С‡РёСЃР»Рѕ");}
 		}
 				
 		bot.onText(/\/id (.+)/, function (msg, match) {
@@ -40,11 +40,11 @@ function workshop(msg, user, bot)
 				if (weapons[i].id = t) {
 						var weapon = weapons[i].id;
 				}
-
+			}
 			var f=0;
 			for (var i = 0; i < user.inventory.length; i++) {
 				if (user.inventory[i] == weapon.id) {f=1}
-				}
+			}
 	
       			if ((user.money > weapon.price) && (user.robot.level >= weapon.needLevel) && (f == 0)){		
 				
@@ -54,12 +54,15 @@ function workshop(msg, user, bot)
 				result['wreapon'] = wreapon;
 			}
 			else{
-				if(user.money < weapon.price) {bot.sendMessage(chatID, "У Вас недостаточно кредитов");}
-				if(user.robot.level >= weapon.needLevel) {bot.sendMessage(chatID, "У Вас недостаточный уровень");}
-				if(f == 1) {bot.sendMessage(chatID, "У Вас уже есть это оружие");}
+				if(user.money < weapon.price) {bot.sendMessage(chatID, "РЈ Р’Р°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂРµРґРёС‚РѕРІ");}
+				if(user.robot.level >= weapon.needLevel) {bot.sendMessage(chatID, "РЈ Р’Р°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅС‹Р№ СѓСЂРѕРІРµРЅСЊ");}
+				if(f == 1) {bot.sendMessage(chatID, "РЈ Р’Р°СЃ СѓР¶Рµ РµСЃС‚СЊ РѕСЂСѓР¶РёРµ");}
 			}
-
+		}
+       }
+}
 				
+			
 			
 
 
