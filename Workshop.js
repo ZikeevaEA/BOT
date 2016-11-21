@@ -470,7 +470,8 @@ function workshop(msg, user, bot)
 						User.robot.equip1 = User.inventory[i].id;
 						User.inventory[i].id = invSlot;
 				}
-				else {bot.sendMessage(chatID, "Экипировки введеного id нет"); User.state = 'choose_slot_e'; }			
+			}
+			
 		}
 		else{
 			bot.sendMessage(chatID, "Необходимо ввести id экипировки.");
