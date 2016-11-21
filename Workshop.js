@@ -434,7 +434,8 @@ function workshop(msg, user, bot)
 
 	if ((txt === 'НАЗАД') && (User.state == 'choose_slot_w'))  { User.state = 'bag'; bot.sendMessage(chatId, 'Введите уровень ивентаря'); }
 
-	if (User.state == 'choose_slot_w') {
+	if (User.state == 'choose_slot_w') 
+	{
 		User.state = 'choose_slot_w_id';
 		var t = parseInt('txt');
 		if (typeof t == 'integer') {
@@ -445,7 +446,7 @@ function workshop(msg, user, bot)
 						User.robot.weapon1 = User.inventory[i].id;
 						User.inventory[i].id = invSlot;
 				}
-				else {bot.sendMessage(chatID, "Оружия введеного id нет"); User.state = 'choose_slot_w'; }			
+			}
 		}
 		else{
 			bot.sendMessage(chatID, "Необходимо ввести id оружия.");
