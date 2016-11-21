@@ -33,12 +33,9 @@ function workshop(msg, user, bot)
 					bot.sendMessage(chatID, s);
 				}
 
-				else { 
-					bot.sendMessage(chatID, "Оружия введённого уровня нет");
-					User.state = 'buy_weapon';
-					}
-				bot.sendMessage(chatID, "Чтобы купить оружие, введите его id");
 			}
+			bot.sendMessage(chatID, "Чтобы купить оружие, введите его id");
+			
 		}
 		else {
 			bot.sendMessage(chatID, "Необходимо ввести число.");
@@ -114,11 +111,6 @@ function workshop(msg, user, bot)
 					bot.sendMessage(chatID, s);
 					
 				}
-
-				else { 
-					bot.sendMessage(chatID, "Перманентного щита введённого уровня нет"); 
-					User.state = 'buy_const_shield';
-				}
 			}
 			bot.sendMessage(chatID, "Чтобы купить щит, введите id щита");
 		}
@@ -185,11 +177,6 @@ function workshop(msg, user, bot)
 				Var s = "id: " + shields[i].id + "\nЗащита: " + shields[i].resist + "\nКоличество отраженных атак: " + shields[i].attakN + "\nПерезарадка: " + shields[i].cooldawn + "\nНеобходимый уровень: " + shields[i].needLevel + "lvl"  + "\nЦена: " + shields[i].price ;
 				if (n == shields[i].needLevel) {
 					bot.sendMessage(chatID, s);
-				}
-
-				else { 
-					bot.sendMessage(chatID, "Обыкновенного щита введённого уровня нет");
-					User.state = 'buy_ordinary_shield'; 
 				}
 			}
 			bot.sendMessage(chatID, "Чтобы купить щит, введите id щита");
@@ -262,11 +249,6 @@ function workshop(msg, user, bot)
 					bot.sendMessage(chatID, s);
 					
 				}
-
-				else { 
-					bot.sendMessage(chatID, "Лечения №1 введённого уровня нет"); 
-					User.state = 'buy_heal_1';
-				}
 			}
 			bot.sendMessage(chatID, "Чтобы купить, введите id лечения");
 		}
@@ -334,11 +316,6 @@ function workshop(msg, user, bot)
 				if (n == catch_heals[i].needLevel) {
 					bot.sendMessage(chatID, s);
 					
-				}
-
-				else { 
-					bot.sendMessage(chatID, "Лечения №2 введённого уровня нет"); 
-					User.state = 'buy_heal_2';
 				}
 			}
 			bot.sendMessage(chatID, "Чтобы купить, введите id лечения");
@@ -417,12 +394,9 @@ function workshop(msg, user, bot)
 					bot.sendMessage(chatID, s);
 				}
 
-				else { 
-					bot.sendMessage(chatID, "Инвентаря введённого уровня нет");
-					User.state = 'bag';
-					}
-				bot.sendMessage(chatID, "Поменять оружие или экипировку\ посмотреть что надето?");
 			}
+			bot.sendMessage(chatID, "Поменять оружие или экипировку\ посмотреть что надето?");
+			
 		}
 		else {
 			bot.sendMessage(chatID, "Необходимо ввести число.");
@@ -434,8 +408,7 @@ function workshop(msg, user, bot)
 
 	if ((txt === 'НАЗАД') && (User.state == 'choose_slot_w'))  { User.state = 'bag'; bot.sendMessage(chatId, 'Введите уровень ивентаря'); }
 
-	if (User.state == 'choose_slot_w') 
-	{
+	if (User.state == 'choose_slot_w') {
 		User.state = 'choose_slot_w_id';
 		var t = parseInt('txt');
 		if (typeof t == 'integer') {
@@ -447,6 +420,7 @@ function workshop(msg, user, bot)
 						User.inventory[i].id = invSlot;
 				}
 			}
+							
 		}
 		else{
 			bot.sendMessage(chatID, "Необходимо ввести id оружия.");
@@ -470,8 +444,7 @@ function workshop(msg, user, bot)
 						User.robot.equip1 = User.inventory[i].id;
 						User.inventory[i].id = invSlot;
 				}
-			}
-			
+			}			
 		}
 		else{
 			bot.sendMessage(chatID, "Необходимо ввести id экипировки.");
@@ -494,4 +467,4 @@ function workshop(msg, user, bot)
 	}
 				
 exports.workshop = workshop(user);
-		
+
